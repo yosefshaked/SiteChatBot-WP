@@ -178,6 +178,7 @@
     border-color: var(--border-color);
     color: #999;
     cursor: not-allowed;
+    transform: none;
 }
 
 
