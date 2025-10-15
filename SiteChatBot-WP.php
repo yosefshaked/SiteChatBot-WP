@@ -3,7 +3,7 @@
  * Plugin Name: SiteChatBot-WP
  * Description: בוט שיחה צף עם תפריט כפתורים המבוסס על צעדי שיחה הנוצרים כטיפוס פוסט ייעודי.
  * Version: 1.0
- * Author: OpenAI Assistant
+ * Author: ThePCRunners
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -124,7 +124,7 @@ function scbwp_inject_footer_html() {
     <button class="chatbot-toggle-button" type="button" aria-label="פתח צ'אט"><span class="icon-wrapper">💬</span></button>
     <div class="chatbot-container" role="dialog" aria-live="polite" aria-label="בוט שיחה" aria-hidden="true">
         <div class="chatbot-header">
-            <span>בוט האתר</span>
+            <span>חוות תות בוט</span>
             <button class="chatbot-close-button" type="button" aria-label="סגירה" tabindex="-1">&times;</button>
         </div>
         <div class="chatbot-messages" tabindex="-1"></div>
