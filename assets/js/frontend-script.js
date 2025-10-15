@@ -1,6 +1,7 @@
 jQuery(document).ready(function ($) {
     var $toggleButton = $('.chatbot-toggle-button');
     var $container = $('.chatbot-container');
+    var $closeButton = $('.chatbot-close-button');
     var $messages = $('.chatbot-messages');
     var $options = $('.chatbot-options');
 
@@ -58,15 +59,34 @@ jQuery(document).ready(function ($) {
         renderStep(siteChatBotData.start_step);
     }
 
+    function updateAccessibilityState(isOpen) {
+        $container.attr('aria-hidden', isOpen ? 'false' : 'true');
+        $toggleButton.attr('aria-expanded', isOpen ? 'true' : 'false');
+        $messages.attr('tabindex', isOpen ? '0' : '-1');
+
+        if (isOpen) {
+            $messages.focus();
+        }
+    }
+
+    updateAccessibilityState($container.hasClass('is-open'));
+
     $toggleButton.on('click', function () {
-        $container.fadeToggle(200, function () {
-            if ($container.is(':visible')) {
-                $container.attr('aria-hidden', 'false');
-                scrollToBottom();
-            } else {
-                $container.attr('aria-hidden', 'true');
-            }
-        });
+        var willOpen = !$container.hasClass('is-open');
+        $container.toggleClass('is-open', willOpen);
+        updateAccessibilityState(willOpen);
+
+        if (willOpen) {
+            scrollToBottom();
+        } else {
+            $toggleButton.focus();
+        }
+    });
+
+    $closeButton.on('click', function () {
+        $container.removeClass('is-open');
+        updateAccessibilityState(false);
+        $toggleButton.focus();
     });
 
     $options.on('click', '.chatbot-option-button', function () {
