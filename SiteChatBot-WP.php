@@ -25,7 +25,7 @@ function scbwp_register_cpt() {
         'search_items'       => 'חפש צעדי שיחה',
         'not_found'          => 'לא נמצאו צעדי שיחה',
         'not_found_in_trash' => 'לא נמצאו צעדי שיחה באשפה',
-        'menu_name'          => 'צעדי שיחה לבוט',
+        'menu_name'          => 'צ'אט בוט - הגדרות',
     );
 
     register_post_type(
