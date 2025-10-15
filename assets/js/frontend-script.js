@@ -5,6 +5,11 @@ jQuery(document).ready(function ($) {
     var $messages = $('.chatbot-messages');
     var $options = $('.chatbot-options');
 
+    function setOptionButtonTabIndex(isOpen) {
+        var tabIndexValue = isOpen ? '0' : '-1';
+        $options.find('.chatbot-option-button').attr('tabindex', tabIndexValue);
+    }
+
     function scrollToBottom() {
         var scrollHeight = $messages.prop('scrollHeight');
         $messages.stop().animate({ scrollTop: scrollHeight }, 300);
@@ -52,6 +57,7 @@ jQuery(document).ready(function ($) {
                 $button.attr('data-link-to', option.link_to);
                 $options.append($button);
             });
+            setOptionButtonTabIndex($container.hasClass('is-open'));
         }
     }
 
@@ -59,20 +65,39 @@ jQuery(document).ready(function ($) {
         renderStep(siteChatBotData.start_step);
     }
 
-    $toggleButton.on('click', function () {
-        $container.toggleClass('is-open');
-
-        var isOpen = $container.hasClass('is-open');
+    function updateAccessibilityState(isOpen) {
         $container.attr('aria-hidden', isOpen ? 'false' : 'true');
+        $toggleButton.attr('aria-expanded', isOpen ? 'true' : 'false');
+        $messages.attr('tabindex', isOpen ? '0' : '-1');
+        $closeButton.attr('tabindex', isOpen ? '0' : '-1');
+        setOptionButtonTabIndex(isOpen);
 
         if (isOpen) {
+            $container.removeAttr('inert');
+            $messages.focus();
+        } else {
+            $container.attr('inert', '');
+        }
+    }
+
+    updateAccessibilityState($container.hasClass('is-open'));
+
+    $toggleButton.on('click', function () {
+        var willOpen = !$container.hasClass('is-open');
+        $container.toggleClass('is-open', willOpen);
+        updateAccessibilityState(willOpen);
+
+        if (willOpen) {
             scrollToBottom();
+        } else {
+            $toggleButton.focus();
         }
     });
 
     $closeButton.on('click', function () {
         $container.removeClass('is-open');
-        $container.attr('aria-hidden', 'true');
+        updateAccessibilityState(false);
+        $toggleButton.focus();
     });
 
     $options.on('click', '.chatbot-option-button', function () {
