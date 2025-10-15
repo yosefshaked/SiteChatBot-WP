@@ -121,9 +121,12 @@ add_action( 'wp_enqueue_scripts', 'scbwp_enqueue_assets' );
  */
 function scbwp_inject_footer_html() {
     ?>
-    <button class="chatbot-toggle-button" type="button" aria-label="פתח או סגור את הבוט">💬</button>
+    <button class="chatbot-toggle-button" type="button" aria-label="פתח צ'אט"><span class="icon-wrapper">💬</span></button>
     <div class="chatbot-container" role="dialog" aria-live="polite" aria-label="בוט שיחה" aria-hidden="true">
-        <div class="chatbot-header">בוט האתר</div>
+        <div class="chatbot-header">
+            <span>בוט האתר</span>
+            <button class="chatbot-close-button" type="button" aria-label="סגירה">&times;</button>
+        </div>
         <div class="chatbot-messages" tabindex="0"></div>
         <div class="chatbot-options" aria-label="אפשרויות בחירה"></div>
     </div>

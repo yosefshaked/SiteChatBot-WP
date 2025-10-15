@@ -1,6 +1,7 @@
 jQuery(document).ready(function ($) {
     var $toggleButton = $('.chatbot-toggle-button');
     var $container = $('.chatbot-container');
+    var $closeButton = $('.chatbot-close-button');
     var $messages = $('.chatbot-messages');
     var $options = $('.chatbot-options');
 
@@ -59,14 +60,19 @@ jQuery(document).ready(function ($) {
     }
 
     $toggleButton.on('click', function () {
-        $container.fadeToggle(200, function () {
-            if ($container.is(':visible')) {
-                $container.attr('aria-hidden', 'false');
-                scrollToBottom();
-            } else {
-                $container.attr('aria-hidden', 'true');
-            }
-        });
+        $container.toggleClass('is-open');
+
+        var isOpen = $container.hasClass('is-open');
+        $container.attr('aria-hidden', isOpen ? 'false' : 'true');
+
+        if (isOpen) {
+            scrollToBottom();
+        }
+    });
+
+    $closeButton.on('click', function () {
+        $container.removeClass('is-open');
+        $container.attr('aria-hidden', 'true');
     });
 
     $options.on('click', '.chatbot-option-button', function () {
