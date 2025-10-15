@@ -125,7 +125,7 @@ function scbwp_inject_footer_html() {
     <div class="chatbot-container" role="dialog" aria-live="polite" aria-label="בוט שיחה" aria-hidden="true">
         <div class="chatbot-header">
             <span>בוט האתר</span>
-            <button class="chatbot-close-button" type="button" aria-label="סגירה">&times;</button>
+            <button class="chatbot-close-button" type="button" aria-label="סגירה" tabindex="-1">&times;</button>
         </div>
         <div class="chatbot-messages" tabindex="-1"></div>
         <div class="chatbot-options" aria-label="אפשרויות בחירה"></div>
