@@ -178,6 +178,30 @@
     border-color: var(--border-color);
     color: #999;
     cursor: not-allowed;
+    transform: none;
+}
+
+
+/* --- Responsiveness for Mobile --- */
+@media (max-width: 768px) {
+    .chatbot-toggle-button {
+        bottom: 85px; /* Adjust if needed to clear WhatsApp button */
+        right: 15px;
+        width: 55px;
+        height: 55px;
+    }
+    .chatbot-toggle-button .icon-wrapper {
+        font-size: 24px;
+    }
+
+    .chatbot-container {
+        /* Full width on mobile, with small margins */
+        width: calc(100% - 30px);
+        max-width: 400px;
+        bottom: 155px; /* Adjust to stay above the button */
+        right: 15px;
+        max-height: 65vh;
+    }
 }
 
 
