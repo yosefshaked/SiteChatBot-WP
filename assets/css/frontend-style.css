@@ -20,7 +20,7 @@
 .chatbot-toggle-button {
     position: fixed;
     /* HIGHER POSITIONING to avoid WhatsApp button */
-    bottom: 95px; 
+    bottom: 85px;
     right: 20px;
     width: 60px;
     height: 60px;
@@ -52,7 +52,7 @@
 .chatbot-container {
     position: fixed;
     /* Positioning above the toggle button */
-    bottom: 170px; 
+    bottom: 160px;
     right: 20px;
     width: 370px;
     max-height: 70vh;
@@ -199,6 +199,29 @@
         width: calc(100% - 30px);
         max-width: 400px;
         bottom: 155px; /* Adjust to stay above the button */
+        right: 15px;
+        max-height: 65vh;
+    }
+}
+
+
+/* --- Responsiveness for Mobile --- */
+@media (max-width: 768px) {
+    .chatbot-toggle-button {
+        bottom: 80px; /* Adjust if needed to clear WhatsApp button */
+        right: 15px;
+        width: 55px;
+        height: 55px;
+    }
+    .chatbot-toggle-button .icon-wrapper {
+        font-size: 24px;
+    }
+
+    .chatbot-container {
+        /* Full width on mobile, with small margins */
+        width: calc(100% - 30px);
+        max-width: 400px;
+        bottom: 150px; /* Adjust to stay above the button */
         right: 15px;
         max-height: 65vh;
     }
