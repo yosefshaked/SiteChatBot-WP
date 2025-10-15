@@ -5,6 +5,11 @@ jQuery(document).ready(function ($) {
     var $messages = $('.chatbot-messages');
     var $options = $('.chatbot-options');
 
+    function setOptionButtonTabIndex(isOpen) {
+        var tabIndexValue = isOpen ? '0' : '-1';
+        $options.find('.chatbot-option-button').attr('tabindex', tabIndexValue);
+    }
+
     function scrollToBottom() {
         var scrollHeight = $messages.prop('scrollHeight');
         $messages.stop().animate({ scrollTop: scrollHeight }, 300);
@@ -52,6 +57,7 @@ jQuery(document).ready(function ($) {
                 $button.attr('data-link-to', option.link_to);
                 $options.append($button);
             });
+            setOptionButtonTabIndex($container.hasClass('is-open'));
         }
     }
 
@@ -63,9 +69,14 @@ jQuery(document).ready(function ($) {
         $container.attr('aria-hidden', isOpen ? 'false' : 'true');
         $toggleButton.attr('aria-expanded', isOpen ? 'true' : 'false');
         $messages.attr('tabindex', isOpen ? '0' : '-1');
+        $closeButton.attr('tabindex', isOpen ? '0' : '-1');
+        setOptionButtonTabIndex(isOpen);
 
         if (isOpen) {
+            $container.removeAttr('inert');
             $messages.focus();
+        } else {
+            $container.attr('inert', '');
         }
     }
 
